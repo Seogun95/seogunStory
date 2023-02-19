@@ -3,14 +3,17 @@ import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import HomePage from '../pages/HomePage';
 import DetailPage from '../pages/DetailPage';
+import Layout from './Layout';
 
 const Router = () => {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/:id" element={<DetailPage />} />
-      </Routes>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/:id" element={<DetailPage />} />
+        </Routes>
+      </Layout>
     </BrowserRouter>
   );
 };

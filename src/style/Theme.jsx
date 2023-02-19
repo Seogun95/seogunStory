@@ -29,6 +29,10 @@ export const CL = {
   pastelBlue: '#b9e7dd',
   pastelYellow: '#f6e1b1',
   pastelGreen: '#bfdaa9',
+
+  dark_1: '#161616',
+  dark_2: '#303030',
+  dark_3: '#7D7D7D',
 };
 
 export const FS = {
