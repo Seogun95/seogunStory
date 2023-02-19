@@ -9,11 +9,9 @@ const SidebarWrapper = styled.aside`
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 999;
+  z-index: 1;
 `;
 
-function Sidebar() {
+export default function Sidebar() {
   return <SidebarWrapper></SidebarWrapper>;
 }
-
-export default Sidebar;

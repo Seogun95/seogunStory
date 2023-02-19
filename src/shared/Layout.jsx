@@ -2,22 +2,28 @@ import React from 'react';
 import styled from 'styled-components';
 import Sidebar from '../common/Sidebar';
 import Footer from '../common/Footer';
+import Header from '../common/Header';
 
 const MainWrapper = styled.main`
   ${(props) => props.theme.FlexRow};
   width: calc(100% - 18rem);
+  height: calc(100vh - 9.375rem);
+  margin-left: 18rem;
+  margin-top: 3.125rem;
+`;
+
+const BodyWrapper = styled.div`
   height: 100%;
-  margin: 2rem 0 2rem 18rem;
-  padding-bottom: 100px;
 `;
 
 function Layout({ children }) {
   return (
-    <div>
+    <BodyWrapper>
+      <Header />
       <Sidebar />
       <MainWrapper>{children}</MainWrapper>
       <Footer />
-    </div>
+    </BodyWrapper>
   );
 }
 
