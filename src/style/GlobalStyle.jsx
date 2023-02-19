@@ -26,7 +26,9 @@ export const GlobalStyle = createGlobalStyle`
     footer, header, hgroup, menu, nav, section {
         display: block;
     }
-
+    body {
+      background-color: #161616;
+    }
     *{
       box-sizing: border-box;
       @font-face {
