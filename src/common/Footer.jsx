@@ -6,7 +6,7 @@ const FooterWrapper = styled.footer`
   width: calc(100% - 18rem);
   margin-left: 18rem;
   height: 100px;
-  position: fixed;
+
   bottom: 0;
   left: 0;
   right: 0;

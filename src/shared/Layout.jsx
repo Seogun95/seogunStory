@@ -8,9 +8,9 @@ const MainWrapper = styled.main`
   ${(props) => props.theme.FlexRow};
   background-color: ${(props) => props.theme.CL.dark_2};
   width: calc(100% - 18rem);
-  height: calc(100vh - 9.375rem);
+  min-height: calc(100vh - 9.375rem);
   margin-left: 18rem;
-  margin-top: 3.125rem;
+  margin: 3.125rem 0 0 18rem;
 `;
 
 const BodyWrapper = styled.div`
