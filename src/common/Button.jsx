@@ -52,7 +52,12 @@ const ButtonWrapper = styled.button`
       height: 3.125rem;
       background-color: ${(props) => props.theme.CL.mint};
     `}
-
+    ${(props) =>
+    props.custom &&
+    css`
+      width: 100%;
+      background-color: ${(props) => props.theme.CL.mint};
+    `}
     & {
     cursor: pointer;
   }
