@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import imgUpload from '../style/img/uploadImg.png';
+import editImg from '../style/img/pencil.svg';
 import { FaPlus } from 'react-icons/fa';
 import useInputOnChange from '../hooks/useInputOnChange';
 import { useDispatch } from 'react-redux';
@@ -15,11 +15,11 @@ const ModalContainer = styled.div`
 `;
 const ImgUploadContainer = styled.div`
   position: absolute;
-  left: -100px;
-  top: 0;
+  left: -4.375rem;
+  top: 3.125rem;
   img {
-    width: 250px;
-    height: 250px;
+    width: 200px;
+    height: 200px;
   }
 `;
 
@@ -27,7 +27,7 @@ const AddPostInputContainer = styled.form`
   position: relative;
   display: flex;
   flex-direction: column;
-  left: 200px;
+  left: 12.5rem;
   width: calc(100% - 250px);
   input,
   textarea {
@@ -52,8 +52,10 @@ const AddPostInputContainer = styled.form`
 `;
 
 function EditPost({ post, setState }) {
-  const [newTitle, , newTitleHanlder] = useInputOnChange(post.title);
-  const [newContent, , newContentHanlder] = useInputOnChange(post.contetnt);
+  const [{ title, content }, inputHandler] = useInputOnChange({
+    title: post.title,
+    content: post.content,
+  });
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -61,7 +63,7 @@ function EditPost({ post, setState }) {
   const editPostHandler = async (e) => {
     e.preventDefault();
     await dispatch(
-      __editPostList({ id: post.id, title: newTitle, content: newContent })
+      __editPostList({ id: post.id, title: title, content: content })
     );
     navigate(`/${post.id}`);
     dispatch(__getPostList());
@@ -72,17 +74,19 @@ function EditPost({ post, setState }) {
     <>
       <ModalContainer>
         <ImgUploadContainer>
-          <img src={imgUpload} alt="이미지업로드" />
+          <img src={editImg} alt="이미지업로드" />
         </ImgUploadContainer>
         <AddPostInputContainer onSubmit={editPostHandler}>
           <input
-            value={newTitle}
-            onChange={newTitleHanlder}
+            value={title}
+            name={'title'}
+            onChange={inputHandler}
             placeholder={'제목을 입력해주세요'}
           />
           <textarea
-            value={newContent}
-            onChange={newContentHanlder}
+            value={content}
+            name={'content'}
+            onChange={inputHandler}
             placeholder={'포스터의 글을 입력해주세요'}
           />
           <Button custom>

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import imgUpload from '../style/img/uploadImg.png';
+import imgUpload from '../style/img/upload.svg';
 import { FaPlus } from 'react-icons/fa';
 import useInputOnChange from '../hooks/useInputOnChange';
 import useInputAutoFoucs from '../hooks/useInputAutoFocus';
@@ -52,8 +52,10 @@ const AddPostInputContainer = styled.form`
   }
 `;
 function AddPost({ setState }) {
-  const [title, setTitleInput, titleInputHandler] = useInputOnChange('');
-  const [content, setDescInput, descInputHandler] = useInputOnChange('');
+  const [{ title, content }, inputHandler] = useInputOnChange({
+    title: '',
+    content: '',
+  });
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -66,8 +68,6 @@ function AddPost({ setState }) {
       await dispatch(__addPostList({ title, content }));
       dispatch(__getPostList());
       navigate('/');
-      setTitleInput('');
-      setDescInput('');
       setState();
     }
   };
@@ -82,12 +82,14 @@ function AddPost({ setState }) {
           <input
             ref={inputFoucsRef}
             value={title}
-            onChange={titleInputHandler}
+            name="title"
+            onChange={inputHandler}
             placeholder={'제목을 입력해주세요'}
           />
           <textarea
             value={content}
-            onChange={descInputHandler}
+            name="content"
+            onChange={inputHandler}
             placeholder={'포스터의 글을 입력해주세요'}
           />
           <Button custom>
