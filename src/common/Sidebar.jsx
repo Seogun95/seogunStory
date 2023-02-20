@@ -4,6 +4,7 @@ import { FaUserAlt, FaPlus } from 'react-icons/fa';
 import Button from './Button';
 import Modal from '../components/Modal';
 import logo from '../style/img/seogun.png';
+import AddPost from '../components/AddPost';
 
 const SidebarWrapper = styled.aside`
   background-color: ${(props) => props.theme.CL.dark_3};
@@ -109,7 +110,9 @@ export default function Sidebar() {
             <FaPlus />
             <Overlay>포스팅 하기</Overlay>
           </Button>
-          <Modal state={showModal} setState={setShowModal}></Modal>
+          <Modal state={showModal} setState={setShowModal}>
+            <AddPost setState={toggleModal} />
+          </Modal>
         </SidebarContainer>
       </SidebarContent>
     </SidebarWrapper>

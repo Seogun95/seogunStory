@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { __getPostList } from '../redux/modules/postListSlice';
+import { Link } from 'react-router-dom';
 
 const PostCardContainer = styled.div`
   ${(props) => props.theme.FlexRow}
@@ -40,7 +41,7 @@ const ImgContainer = styled.div`
 function PostList() {
   const dispatch = useDispatch();
 
-  // 첫 로딩될 때 리스트 가져오기 & display 바뀔때
+  // 첫 로딩될 때 리스트 가져옴
   const { isLoading, error, postList } = useSelector((state) => {
     return state.postList;
   });
@@ -49,7 +50,6 @@ function PostList() {
     dispatch(__getPostList());
   }, [dispatch]);
 
-  // 상세 버튼 클릭시
   if (isLoading) {
     return <div>로딩 중...</div>;
   }
@@ -67,6 +67,9 @@ function PostList() {
           <PostCardDesc>
             <h1>{post.title}</h1>
             <p>{post.content}</p>
+            <Link to={`/${post.id}`}>
+              <button>상세보기</button>
+            </Link>
           </PostCardDesc>
         </PostCardContainer>
       ))}

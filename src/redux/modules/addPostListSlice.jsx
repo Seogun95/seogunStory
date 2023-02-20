@@ -10,12 +10,16 @@ const initialState = {
 };
 
 // 미들웨어
-export const __getPostList = createAsyncThunk(
-  'getPostList',
-  async (arg, thunkAPI) => {
+export const __addPostList = createAsyncThunk(
+  'addPostList',
+  async ({ title, content }, thunkAPI) => {
     try {
-      const response = await axios.get(
-        `${process.env.REACT_APP_BLOG_URL}/postList`
+      const response = await axios.post(
+        `${process.env.REACT_APP_BLOG_URL}/postList`,
+        {
+          title,
+          content,
+        }
       );
 
       return thunkAPI.fulfillWithValue(response.data);
@@ -25,22 +29,22 @@ export const __getPostList = createAsyncThunk(
   }
 );
 
-export const postListSlice = createSlice({
-  name: 'getPost',
+export const addPostListSlice = createSlice({
+  name: 'addPost',
   initialState,
   reducers: {},
   // 미들웨어
   extraReducers: (builder) => {
-    builder.addCase(__getPostList.pending, (state, atcion) => {
+    builder.addCase(__addPostList.pending, (state, atcion) => {
       state.isLoading = true;
       state.isError = false;
     });
-    builder.addCase(__getPostList.fulfilled, (state, action) => {
+    builder.addCase(__addPostList.fulfilled, (state, action) => {
       state.isLoading = false;
       state.isError = false;
       state.postList = action.payload;
     });
-    builder.addCase(__getPostList.rejected, (state, action) => {
+    builder.addCase(__addPostList.rejected, (state, action) => {
       state.isLoading = false;
       state.isError = true;
       state.error = action.payload;
@@ -51,4 +55,4 @@ export const postListSlice = createSlice({
 // 액션함수
 // export const {} = postListSlice.actions;
 // 리듀서
-export default postListSlice.reducer;
+export default addPostListSlice.reducer;

@@ -5,6 +5,7 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import useOutsideClick from '../hooks/useOutsideClick';
 
 const ModalWrapper = styled.div`
+  ${(props) => props.theme.FlexRow};
   position: fixed;
   z-index: 1;
   left: 0;
@@ -21,7 +22,7 @@ const ModalWrapper = styled.div`
 
 const ModalContent = styled.div`
   background-color: #1f1f1f;
-  margin: 15% auto;
+  margin: auto; /* 추가 */
   padding: 20px;
   width: 40%;
   min-height: 300px;
@@ -31,7 +32,6 @@ const ModalContent = styled.div`
     color: white;
   }
 `;
-
 const CloseButton = styled.button`
   position: absolute;
   top: 10px;
