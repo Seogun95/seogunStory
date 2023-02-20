@@ -60,18 +60,17 @@ function PostList() {
   return (
     <div>
       {postList.map((post) => (
-        <PostCardContainer key={post.id}>
-          <ImgContainer>
-            <img src="https://i.imgur.com/JPVRPFW.png" alt="썸네일" />
-          </ImgContainer>
-          <PostCardDesc>
-            <h1>{post.title}</h1>
-            <p>{post.content}</p>
-            <Link to={`/${post.id}`}>
-              <button>상세보기</button>
-            </Link>
-          </PostCardDesc>
-        </PostCardContainer>
+        <Link to={`/${post.id}`} key={post.id}>
+          <PostCardContainer>
+            <ImgContainer>
+              <img src="https://i.imgur.com/JPVRPFW.png" alt="썸네일" />
+            </ImgContainer>
+            <PostCardDesc>
+              <h1>{post.title}</h1>
+              <p>{post.content}</p>
+            </PostCardDesc>
+          </PostCardContainer>
+        </Link>
       ))}
     </div>
   );
