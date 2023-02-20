@@ -57,4 +57,21 @@ export const GlobalStyle = createGlobalStyle`
           font-display: swap;
       }
     }
+    ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px
+  }
+
+  ::-webkit-scrollbar-thumb {
+      background-clip: padding-box;
+      border: 0 solid transparent;
+      border-radius: 10px;
+      background-color: #54efc3;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+
 `;
