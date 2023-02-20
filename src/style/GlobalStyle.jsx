@@ -18,7 +18,6 @@ export const GlobalStyle = createGlobalStyle`
         margin: 0;
         padding: 0;
         border: 0;
-        font-size: 100%;
         vertical-align: baseline;
     }
 
@@ -28,6 +27,7 @@ export const GlobalStyle = createGlobalStyle`
     }
     body {
       background-color: #161616;
+      color: white;
     }
     *{
       box-sizing: border-box;
