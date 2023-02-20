@@ -8,10 +8,10 @@ import Modal from '../components/Modal';
 import EditPost from '../components/EditPost';
 
 function DetailPage() {
+  const dispatch = useDispatch();
   const { id } = useParams();
   const post = useSelector((state) => state.postList.postList);
-  const postList = post.find((item) => item.id === Number(id));
-  const dispatch = useDispatch();
+  const postLists = post.find((item) => item.id === Number(id));
 
   const navigate = useNavigate();
 
@@ -29,19 +29,25 @@ function DetailPage() {
     setShowModal((prevShowModal) => !prevShowModal);
   };
 
+  /*
+
+  */
   return (
     <>
-      <div>
-        <h1>{postList.title}</h1>
-        <p>{postList.content}</p>
-        <button onClick={() => deleteBtnHandler(postList.id)}>삭제</button>
-        <Button large onClick={toggleModal}>
-          수정
-        </Button>
-        <Modal state={showModal} setState={setShowModal}>
-          <EditPost post={postList} setState={toggleModal} />
-        </Modal>
-      </div>
+      {/*조건부 렌더링 구문*/}
+      {post.length !== 0 && (
+        <div>
+          <h1>{postLists.title}</h1>
+          <p>{postLists.content}</p>
+          <button onClick={() => deleteBtnHandler(postLists.id)}>삭제</button>
+          <Button large onClick={toggleModal}>
+            수정
+          </Button>
+          <Modal state={showModal} setState={setShowModal}>
+            <EditPost post={postLists} setState={toggleModal} />
+          </Modal>
+        </div>
+      )}
     </>
   );
 }
