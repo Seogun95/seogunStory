@@ -32,7 +32,7 @@ export const CL = {
 
   dark_1: '#161616',
   dark_2: '#303030',
-  dark_3: '#7D7D7D',
+  dark_3: '#4f4f4f',
 };
 
 export const FS = {

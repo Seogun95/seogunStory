@@ -1,6 +1,5 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { FlexColumn, CL } from '../style/Theme';
 
 export default function Button(props) {
   return <ButtonWrapper {...props}>{props.children}</ButtonWrapper>;
@@ -17,9 +16,10 @@ Button.defaultProps = {
 };
 
 const ButtonWrapper = styled.button`
+  ${(props) => props.theme.FlexRow};
   width: ${(props) => props.w};
   height: ${(props) => props.h};
-  font-size: ${(props) => props.fontSize};
+  font-size: ${(props) => props.size};
 
   //기본 값
   padding: ${(props) => props.padding};
@@ -42,7 +42,7 @@ const ButtonWrapper = styled.button`
     css`
       width: 8.125rem;
       height: 2.8125rem;
-      color: ${(props) => props.theme.FC.mint};
+      background-color: ${(props) => props.theme.CL.mint};
     `}
 
   ${(props) =>
@@ -50,6 +50,7 @@ const ButtonWrapper = styled.button`
     css`
       width: 12.5rem;
       height: 3.125rem;
+      background-color: ${(props) => props.theme.CL.mint};
     `}
 
     & {
@@ -58,6 +59,6 @@ const ButtonWrapper = styled.button`
 
   &:active,
   &:hover {
-    filter: brightness(97%);
+    opacity: 0.9;
   }
 `;

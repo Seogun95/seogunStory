@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const FooterWrapper = styled.footer`
   ${(props) => props.theme.FlexRow};
-  background-color: ${(props) => props.theme.CL.dark_2};
+  background-color: ${(props) => props.theme.CL.dark_1};
   width: calc(100% - 18rem);
   margin-left: 18rem;
   height: 100px;
