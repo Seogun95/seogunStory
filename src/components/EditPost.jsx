@@ -3,12 +3,11 @@ import styled from 'styled-components';
 import imgUpload from '../style/img/uploadImg.png';
 import { FaPlus } from 'react-icons/fa';
 import useInputOnChange from '../hooks/useInputOnChange';
-import useInputAutoFoucs from '../hooks/useInputAutoFocus';
 import { useDispatch } from 'react-redux';
-import { __addPostList } from '../redux/modules/addPostListSlice';
 import { __getPostList } from '../redux/modules/postListSlice';
 import { useNavigate } from 'react-router-dom';
 import Button from '../common/Button';
+import { __editPostList } from '../redux/modules/editPostListSlice';
 
 const ModalContainer = styled.div`
   position: relative;
@@ -51,25 +50,22 @@ const AddPostInputContainer = styled.form`
     min-height: 200px;
   }
 `;
-function AddPost({ setState }) {
-  const [title, setTitleInput, titleInputHandler] = useInputOnChange('');
-  const [content, setDescInput, descInputHandler] = useInputOnChange('');
+
+function EditPost({ post, setState }) {
+  const [newTitle, , newTitleHanlder] = useInputOnChange(post.title);
+  const [newContent, , newContentHanlder] = useInputOnChange(post.contetnt);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const inputFoucsRef = useInputAutoFoucs();
 
-  // 추가버튼 클릭시
-  const createPostHandler = async (e) => {
+  const editPostHandler = async (e) => {
     e.preventDefault();
-    if (title !== '') {
-      await dispatch(__addPostList({ title, content }));
-      dispatch(__getPostList());
-      navigate('/');
-      setTitleInput('');
-      setDescInput('');
-      setState();
-    }
+    await dispatch(
+      __editPostList({ id: post.id, title: newTitle, content: newContent })
+    );
+    navigate(`/${post.id}`);
+    dispatch(__getPostList());
+    setState();
   };
 
   return (
@@ -78,16 +74,15 @@ function AddPost({ setState }) {
         <ImgUploadContainer>
           <img src={imgUpload} alt="이미지업로드" />
         </ImgUploadContainer>
-        <AddPostInputContainer onSubmit={createPostHandler}>
+        <AddPostInputContainer onSubmit={editPostHandler}>
           <input
-            ref={inputFoucsRef}
-            value={title}
-            onChange={titleInputHandler}
+            value={newTitle}
+            onChange={newTitleHanlder}
             placeholder={'제목을 입력해주세요'}
           />
           <textarea
-            value={content}
-            onChange={descInputHandler}
+            value={newContent}
+            onChange={newContentHanlder}
             placeholder={'포스터의 글을 입력해주세요'}
           />
           <Button custom>
@@ -99,4 +94,4 @@ function AddPost({ setState }) {
   );
 }
 
-export default AddPost;
+export default EditPost;

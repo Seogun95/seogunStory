@@ -5,12 +5,11 @@ import Footer from '../common/Footer';
 import Header from '../common/Header';
 
 const MainWrapper = styled.main`
-  ${(props) => props.theme.FlexRow};
   background-color: ${(props) => props.theme.CL.dark_2};
   width: calc(100% - 18rem);
   min-height: calc(100vh - 9.375rem);
-  margin-left: 18rem;
   margin: 3.125rem 0 0 18rem;
+  padding: 1rem;
 `;
 
 const BodyWrapper = styled.div`
