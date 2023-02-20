@@ -4,9 +4,9 @@ function useInputAutoFocus() {
   const inputRef = useRef(null);
 
   useEffect(() => {
-    inputRef.current.focus();
-  }, []);
-
+    inputRef.current && inputRef.current.focus();
+  }, [inputRef]);
+  console.log(inputRef.current);
   return inputRef;
 }
 

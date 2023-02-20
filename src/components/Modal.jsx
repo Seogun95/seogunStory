@@ -15,6 +15,7 @@ const ModalWrapper = styled.div`
   overflow: auto;
   background-color: #000000ca;
   backdrop-filter: blur(1px);
+  /* display: ${(props) => (props.show ? 'block' : 'none')}; */
   visibility: ${(props) => (props.show ? 'visible' : 'hidden')};
   opacity: ${(props) => (props.show ? '1' : '0')};
   transition: visibility 0.2s ease-in-out, opacity 0.2s ease-in-out;
