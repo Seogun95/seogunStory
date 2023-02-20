@@ -1,14 +1,13 @@
 import React from 'react';
-import styled from 'styled-components';
-import Button from '../common/Button';
-const HomeWrapper = styled.div``;
+import PostList from '../components/PostList';
 
 function HomePage() {
   return (
-    <HomeWrapper>
-      안녕
-      <Button small>버튼</Button>
-    </HomeWrapper>
+    <>
+      <div>
+        <PostList />
+      </div>
+    </>
   );
 }
 
