@@ -3,7 +3,7 @@ import axios from 'axios';
 
 // 초기값
 const initialState = {
-  todoList: [],
+  postList: [],
   isLoading: false,
   isError: false,
   error: null,
@@ -15,8 +15,9 @@ export const __getPostList = createAsyncThunk(
   async (arg, thunkAPI) => {
     try {
       const response = await axios.get(
-        `${process.env.REACT_APP_SERVER_URL}/postList`
+        `${process.env.REACT_APP_BLOG_URL}/postList`
       );
+    
       return thunkAPI.fulfillWithValue(response.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -24,8 +25,8 @@ export const __getPostList = createAsyncThunk(
   }
 );
 
-export const todoListSlice = createSlice({
-  name: 'todoList',
+export const postListSlice = createSlice({
+  name: 'postList',
   initialState,
   reducers: {},
   // 미들웨어
@@ -37,7 +38,7 @@ export const todoListSlice = createSlice({
     builder.addCase(__getPostList.fulfilled, (state, action) => {
       state.isLoading = false;
       state.isError = false;
-      state.todoList = action.payload;
+      state.postList = action.payload;
     });
     builder.addCase(__getPostList.rejected, (state, action) => {
       state.isLoading = false;
@@ -48,6 +49,6 @@ export const todoListSlice = createSlice({
 });
 
 // 액션함수
-export const {} = todoListSlice.actions;
+// export const {} = postListSlice.actions;
 // 리듀서
-export default todoListSlice.reducer;
+export default postListSlice.reducer;
