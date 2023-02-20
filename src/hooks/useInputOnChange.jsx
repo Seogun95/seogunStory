@@ -1,11 +1,14 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 
-function useInputOnChange() {
-  const [value, setValue] = useState('');
+const useInputOnChange = (initialValue) => {
+  const [state, setState] = useState(initialValue);
 
-  const handler = (e) => {
-    setValue(e.target.value);
-  };
-  return [value, setValue, handler];
-}
+  const setStateHandler = useCallback((e) => {
+    const { name, value } = e.target;
+    setState((prev) => ({ ...prev, [name]: value }));
+  }, []);
+
+  return [state, setStateHandler];
+};
+
 export default useInputOnChange;
