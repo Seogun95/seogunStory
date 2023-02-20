@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { FaUserAlt, FaPlus } from 'react-icons/fa';
 import Button from './Button';
 import Modal from '../components/Modal';
+import logo from '../style/img/seogun.png';
 
 const SidebarWrapper = styled.aside`
   background-color: ${(props) => props.theme.CL.dark_3};
@@ -29,7 +30,7 @@ const ImgContainer = styled.div`
   ${(props) => props.theme.FlexRow}
   width: 13.75rem;
   height: 14.375rem;
-  border-radius: ${(props) => props.theme.BR.half_round};
+  border-radius: ${(props) => props.theme.BR.round};
   overflow: hidden;
   backdrop-filter: contrast(0.5);
   img {
@@ -95,7 +96,7 @@ export default function Sidebar() {
     <SidebarWrapper>
       <SidebarContent>
         <ImgContainer>
-          <img src="https://i.imgur.com/buI0G8V.png" alt="프로필" />
+          <img src={logo} alt="프로필" />
           <IconWrapper>
             <FaUserAlt />
           </IconWrapper>
