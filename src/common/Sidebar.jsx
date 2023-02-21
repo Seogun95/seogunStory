@@ -110,9 +110,11 @@ export default function Sidebar() {
             <FaPlus />
             <Overlay>포스팅 하기</Overlay>
           </Button>
-          <Modal state={showModal} setState={setShowModal}>
-            <AddPost setState={toggleModal} />
-          </Modal>
+          {showModal === true && (
+            <Modal state={showModal} setState={setShowModal}>
+              <AddPost setState={toggleModal} />
+            </Modal>
+          )}
         </SidebarContainer>
       </SidebarContent>
     </SidebarWrapper>

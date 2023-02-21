@@ -43,9 +43,11 @@ function DetailPage() {
           <Button large onClick={toggleModal}>
             수정
           </Button>
-          <Modal state={showModal} setState={setShowModal}>
-            <EditPost post={postLists} setState={toggleModal} />
-          </Modal>
+          {showModal === true && (
+            <Modal state={showModal} setState={setShowModal}>
+              <EditPost post={postLists} setState={toggleModal} />
+            </Modal>
+          )}
         </div>
       )}
     </>

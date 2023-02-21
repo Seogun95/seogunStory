@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import editImg from '../style/img/pencil.svg';
 import { FaPlus } from 'react-icons/fa';
 import useInputOnChange from '../hooks/useInputOnChange';
+import useInputAutoFoucs from '../hooks/useInputAutoFocus';
 import { useDispatch } from 'react-redux';
 import { __getPostList } from '../redux/modules/postListSlice';
 import { useNavigate } from 'react-router-dom';
@@ -56,7 +57,7 @@ function EditPost({ post, setState }) {
     title: post.title,
     content: post.content,
   });
-
+  const inputFoucsRef = useInputAutoFoucs();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -78,6 +79,7 @@ function EditPost({ post, setState }) {
         </ImgUploadContainer>
         <AddPostInputContainer onSubmit={editPostHandler}>
           <input
+            ref={inputFoucsRef}
             value={title}
             name={'title'}
             onChange={inputHandler}
