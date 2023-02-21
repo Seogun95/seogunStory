@@ -10,9 +10,9 @@ const SidebarWrapper = styled.aside`
   background-color: ${(props) => props.theme.CL.dark_3};
   box-shadow: 4px 0px 5px 0px rgb(0 0 0 / 76%);
   width: 18rem;
-  height: calc(100vh - 3.125rem);
+  height: calc(100vh);
   position: fixed;
-  top: 50px;
+  padding-top: 4rem;
   left: 0;
   z-index: 1;
 `;
