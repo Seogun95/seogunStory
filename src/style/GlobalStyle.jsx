@@ -47,30 +47,12 @@ export const GlobalStyle = createGlobalStyle`
     *{
       box-sizing: border-box;
       @font-face {
-          font-family: 'IBM';
-          src: local(IBMPlexSansKR),
-              url("./fonts/IBMPlexSansKR-Bold.woff2") format("woff2");
-          font-weight: 400;
-          font-style: normal;
-          font-display: swap;
-      }
-
-      @font-face {
-          font-family: 'IBM';
-          src: local(IBMPlexSansKR),
-              url("./fonts/IBMPlexSansKR.woff2") format("woff2");
-          font-weight: 700;
-          font-style: normal;
-          font-display: swap;
-      }
-      @font-face {
-          font-family: 'Maple';
-          src: local(MaplestoryLight),
-              url("./fonts/Maplestory-Light.woff2") format("woff2");
-          font-weight: normal;
-          font-style: normal;
-          font-display: swap;
-      }
+    font-family: 'IBMPlexSansKR-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/IBMPlexSansKR-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    }
+      font-family: 'IBMPlexSansKR-Regular';
     }
     ::-webkit-scrollbar {
     width: 10px;
