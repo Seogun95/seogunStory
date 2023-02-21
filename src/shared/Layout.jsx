@@ -7,9 +7,9 @@ import Header from '../common/Header';
 const MainWrapper = styled.main`
   background-color: ${(props) => props.theme.CL.dark_2};
   width: calc(100% - 18rem);
-  min-height: calc(100vh);
+  min-height: calc(100vh - 100px);
   margin: 0 0 0 18rem;
-  padding: 1rem;
+  padding: 4rem 1rem;
 `;
 
 const BodyWrapper = styled.div`

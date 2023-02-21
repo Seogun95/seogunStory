@@ -4,9 +4,6 @@ import styled from 'styled-components';
 import { __getPostList } from '../redux/modules/postListSlice';
 import { Link } from 'react-router-dom';
 
-const MainWrapper = styled.section`
-  padding: 1rem 2rem;
-`;
 const PostCardContainer = styled.div`
   ${(props) => props.theme.FlexRow}
   justify-content: flex-start;
@@ -61,7 +58,7 @@ function HomePage() {
   }
 
   return (
-    <MainWrapper>
+    <>
       {postList.map((post) => (
         <Link to={`/${post.id}`} key={post.id}>
           <PostCardContainer>
@@ -75,7 +72,7 @@ function HomePage() {
           </PostCardContainer>
         </Link>
       ))}
-    </MainWrapper>
+    </>
   );
 }
 

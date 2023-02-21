@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+
 const HeaderStyles = styled.header`
   width: 100%;
   ${(props) => props.theme.DarkBlur};
@@ -43,7 +45,9 @@ export default function Header() {
 
   return (
     <HeaderStyles className={isHide ? 'hide' : !isHide ? '' : 'hide'}>
-      <Logo>서근 스토리</Logo>
+      <Link to="/">
+        <Logo>서근 스토리</Logo>
+      </Link>
     </HeaderStyles>
   );
 }
