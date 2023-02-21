@@ -46,6 +46,12 @@ const ImgContainer = styled.div`
 
 const CardSection = styled.section`
   ${(props) => props.theme.FlexCol}
+  padding: 5rem 0;
+`;
+
+const CardEmptyContainer = styled.div`
+  ${(props) => props.theme.FlexRow}
+  height: calc(100vh - 260px);
 `;
 
 function HomePage() {
@@ -70,7 +76,7 @@ function HomePage() {
   return (
     <>
       <CardSection>
-        {postList &&
+        {postList.length !== 0 ? (
           postList.map((post) => (
             <PostCardContainer to={`/${post.id}`} key={post.id}>
               <ImgContainer>
@@ -95,7 +101,12 @@ function HomePage() {
                 </p>
               </PostCardDesc>
             </PostCardContainer>
-          ))}
+          ))
+        ) : (
+          <CardEmptyContainer>
+            <h1>아무런 게시글을 등록하지 않았어요!</h1>
+          </CardEmptyContainer>
+        )}
       </CardSection>
     </>
   );
