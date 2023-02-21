@@ -64,7 +64,12 @@ function EditPost({ post, setState }) {
   const editPostHandler = async (e) => {
     e.preventDefault();
     await dispatch(
-      __editPostList({ id: post.id, title: title, content: content })
+      __editPostList({
+        id: post.id,
+        title: title,
+        content: content,
+        viewUrl: post.viewUrl,
+      })
     );
     navigate(`/${post.id}`);
     dispatch(__getPostList());

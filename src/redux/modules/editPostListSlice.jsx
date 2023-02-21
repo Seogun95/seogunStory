@@ -16,7 +16,11 @@ export const __editPostList = createAsyncThunk(
     try {
       const response = await axios.put(
         `${process.env.REACT_APP_BLOG_URL}/postList/${payload.id}`,
-        { title: payload.title, content: payload.content }
+        {
+          title: payload.title,
+          content: payload.content,
+          viewUrl: payload.viewUrl,
+        }
       );
 
       return thunkAPI.fulfillWithValue(response.data);

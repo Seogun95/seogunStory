@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { __getPostList } from '../redux/modules/postListSlice';
 import { Link } from 'react-router-dom';
-import blank from '../style/img/blank.png';
+import blank from '../style/img/blank.svg';
 
 const PostCardContainer = styled(Link)`
   ${(props) => props.theme.FlexRow}
