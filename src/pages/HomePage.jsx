@@ -59,19 +59,20 @@ function HomePage() {
 
   return (
     <>
-      {postList.map((post) => (
-        <Link to={`/${post.id}`} key={post.id}>
-          <PostCardContainer>
-            <ImgContainer>
-              <img src="https://i.imgur.com/JPVRPFW.png" alt="썸네일" />
-            </ImgContainer>
-            <PostCardDesc>
-              <h1>{post.title}</h1>
-              <p>{post.content}</p>
-            </PostCardDesc>
-          </PostCardContainer>
-        </Link>
-      ))}
+      {postList &&
+        postList.map((post) => (
+          <Link to={`/${post.id}`} key={post.id}>
+            <PostCardContainer>
+              <ImgContainer>
+                <img src="https://i.imgur.com/JPVRPFW.png" alt="썸네일" />
+              </ImgContainer>
+              <PostCardDesc>
+                <h1>{post.title}</h1>
+                <p>{post.content}</p>
+              </PostCardDesc>
+            </PostCardContainer>
+          </Link>
+        ))}
     </>
   );
 }

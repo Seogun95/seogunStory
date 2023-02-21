@@ -1,12 +1,13 @@
 import React from 'react';
 import Router from './shared/Router';
 import { ThemeProvider } from 'styled-components';
-import { CL, FW, FS, BR, FlexRow, FlexCol } from './style/Theme';
+import { CL, FW, FS, BR, FlexRow, FlexCol, DarkBlur } from './style/Theme';
 
 function App() {
   const theme = {
     FlexRow,
     FlexCol,
+    DarkBlur,
     CL,
     FW,
     FS,

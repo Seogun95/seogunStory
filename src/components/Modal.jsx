@@ -15,17 +15,17 @@ const ModalWrapper = styled.div`
   overflow: auto;
   background-color: #000000ca;
   backdrop-filter: blur(1px);
-  /* display: ${(props) => (props.show ? 'block' : 'none')}; */
-  visibility: ${(props) => (props.show ? 'visible' : 'hidden')};
+  display: ${(props) => (props.show ? 'flex' : 'none')};
+  /* visibility: ${(props) => (props.show ? 'visible' : 'hidden')};
   opacity: ${(props) => (props.show ? '1' : '0')};
-  transition: visibility 0.2s ease-in-out, opacity 0.2s ease-in-out;
+  transition: visibility 0.2s ease-in-out, opacity 0.2s ease-in-out; */
 `;
 
 const ModalContent = styled.div`
   background-color: #1f1f1f;
   margin: auto; /* 추가 */
   padding: 20px;
-  width: 40%;
+  width: 800px;
   min-height: 300px;
   border-radius: 1rem;
   filter: drop-shadow(2px 14px 30px rgba(0, 0, 0, 80%));

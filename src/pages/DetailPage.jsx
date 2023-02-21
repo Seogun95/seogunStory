@@ -29,9 +29,6 @@ function DetailPage() {
     setShowModal((prevShowModal) => !prevShowModal);
   };
 
-  /*
-
-  */
   return (
     <>
       {/*조건부 렌더링 구문*/}
