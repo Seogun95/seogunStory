@@ -6,6 +6,22 @@ import { __getPostList } from '../redux/modules/postListSlice';
 import Button from '../common/Button';
 import Modal from '../components/Modal';
 import EditPost from '../components/EditPost';
+import styled from 'styled-components';
+
+const DetailTitleWrapper = styled.div`
+  ${(props) => props.theme.FlexRow}
+  min-height: 250px;
+  background-color: ${(props) => props.theme.CL.dark_3};
+`;
+
+const DetailTitleContainer = styled.div`
+  padding: 20px;
+  margin: 3rem 0 1rem;
+  h1 {
+    max-width: 600px;
+    white-space: normal;
+  }
+`;
 
 function DetailPage() {
   const dispatch = useDispatch();
@@ -34,7 +50,11 @@ function DetailPage() {
       {/*조건부 렌더링 구문*/}
       {post.length !== 0 && (
         <div>
-          <h1>{postLists.title}</h1>
+          <DetailTitleWrapper>
+            <DetailTitleContainer>
+              <h1>{postLists.title}</h1>
+            </DetailTitleContainer>
+          </DetailTitleWrapper>
           <p>{postLists.content}</p>
           <button onClick={() => deleteBtnHandler(postLists.id)}>삭제</button>
           <Button large onClick={toggleModal}>

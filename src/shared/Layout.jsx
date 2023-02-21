@@ -9,7 +9,6 @@ const MainWrapper = styled.main`
   width: calc(100% - 18rem);
   min-height: calc(100vh - 100px);
   margin: 0 0 0 18rem;
-  padding: 4rem 1rem;
 `;
 
 const BodyWrapper = styled.div`
