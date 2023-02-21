@@ -3,14 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { __getPostList } from '../redux/modules/postListSlice';
 import { Link } from 'react-router-dom';
-import blank from '../style/img/blank.svg';
+import blank from '../style/img/blank.png';
 
-const PostCardContainer = styled.div`
+const PostCardContainer = styled(Link)`
   ${(props) => props.theme.FlexRow}
   justify-content: flex-start;
   padding: 1rem;
-  margin: 2rem 0;
-  width: 100%;
+  margin: 1rem 0;
+  width: 85%;
   min-width: 37.5rem;
   border-radius: ${(props) => props.theme.BR.normal};
   background-color: ${(props) => props.theme.CL.dark_1};
@@ -28,7 +28,7 @@ const PostCardDesc = styled.div`
 
 const ImgContainer = styled.div`
   width: 200px;
-  height: 150px;
+  height: 200px;
   border-radius: ${(props) => props.theme.BR.normal};
   overflow: hidden;
   margin-right: 2rem;
@@ -37,6 +37,10 @@ const ImgContainer = styled.div`
     height: 100%;
     object-fit: cover;
   }
+`;
+
+const CardSection = styled.section`
+  ${(props) => props.theme.FlexCol}
 `;
 
 function HomePage() {
@@ -60,10 +64,11 @@ function HomePage() {
 
   return (
     <>
-      {postList &&
-        postList.map((post) => (
-          <Link to={`/${post.id}`} key={post.id}>
-            <PostCardContainer>
+      <CardSection>
+        {postList &&
+          postList.map((post) => (
+            <PostCardContainer to={`/${post.id}`} key={post.id}>
+              {/* <PostCardContainer> */}
               <ImgContainer>
                 {post.viewUrl !== '' ? (
                   <img src={post.viewUrl} alt="썸네일" />
@@ -75,9 +80,10 @@ function HomePage() {
                 <h1>{post.title}</h1>
                 <p>{post.content}</p>
               </PostCardDesc>
+              {/* </PostCardContainer> */}
             </PostCardContainer>
-          </Link>
-        ))}
+          ))}
+      </CardSection>
     </>
   );
 }

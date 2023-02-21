@@ -33,6 +33,17 @@ export const GlobalStyle = createGlobalStyle`
     text-decoration: none; /* 언더바 제거 */
     color: inherit; /* 부모 요소의 색을 상속 받음 */
     }
+    img {
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+}
     *{
       box-sizing: border-box;
       @font-face {
