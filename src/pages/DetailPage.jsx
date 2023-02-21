@@ -12,7 +12,7 @@ const DetailTitleWrapper = styled.div`
   position: relative;
   ${(props) => props.theme.FlexCol}
   min-height: 350px;
-  background-color: ${(props) => props.theme.CL.dark_3};
+  z-index: 0;
 `;
 const DetailImg = styled.div`
   position: absolute;
@@ -20,7 +20,7 @@ const DetailImg = styled.div`
   top: 0;
   height: 100%;
   width: 100%;
-
+  z-index: -1;
   &:before {
     content: '';
     position: absolute;
@@ -54,11 +54,9 @@ const DetailTitleContainer = styled.div`
 `;
 const DetailTitle = styled.div`
   position: relative;
-  z-index: 1;
 `;
 const DetailTitleMeta = styled.div`
   ${(props) => props.theme.FlexRow}
-  z-index: 1;
   > span {
     margin-right: 1rem;
   }
@@ -104,7 +102,11 @@ function DetailPage() {
           <DetailTitleWrapper>
             <DetailTitleContainer>
               <DetailTitle>
-                <h1>{postLists.title}</h1>
+                <h1>
+                  {postLists.title.length > 40
+                    ? `${postLists.title.slice(0, 40)}...`
+                    : postLists.title}
+                </h1>
               </DetailTitle>
             </DetailTitleContainer>
             <DetailTitleMeta>

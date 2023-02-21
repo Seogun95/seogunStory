@@ -26,7 +26,7 @@ const PostCardDesc = styled.div`
   ${(props) => props.theme.FlexCol}
   align-items: flex-start;
   gap: 1rem;
-  width: 700px;
+  width: 800px;
   word-break: break-word;
   p {
     opacity: 0.7;
@@ -79,53 +79,48 @@ function HomePage() {
     dispatch(__getPostList());
   }, [dispatch]);
 
-  if (isLoading) {
-    return <div>로딩 중...</div>;
-  }
   if (error) {
     return <div>{error.message}</div>;
   }
 
   return (
     <>
-      <CardSection>
-        {postList.length !== 0 ? (
-          postList.map((post) => (
-            <PostCardContainer to={`/${post.id}`} key={post.id}>
-              <ImgContainer>
-                {post.viewUrl !== '' ? (
-                  <img src={post.viewUrl} alt="썸네일" />
-                ) : (
-                  <img src={blank} alt="이미지업로드" />
-                )}
-              </ImgContainer>
-              <PostCardDesc>
-                <h1>
-                  {post.title.length > 37
-                    ? `${post.title.slice(0, 35)}...`
-                    : post.title}
-                </h1>
-
-                <p>
-                  {' '}
-                  {post.content.length > 70
-                    ? `${post.content.slice(0, 70)}...`
-                    : post.content}
-                </p>
-                <PostCardDate>{post.date}</PostCardDate>
-              </PostCardDesc>
-            </PostCardContainer>
-          ))
-        ) : (
-          <CardEmptyContainer>
-            <h1>아무런 게시글을 등록하지 않았어요 🙂</h1>
-            <p>
-              사이드바에 <span>추가하기</span> 버튼을 통해 게시글을 추가할 수
-              있습니다
-            </p>
-          </CardEmptyContainer>
-        )}
-      </CardSection>
+      {isLoading ? (
+        <CardEmptyContainer>로딩중...</CardEmptyContainer>
+      ) : (
+        <CardSection>
+          {postList.length !== 0 ? (
+            postList.map((post) => (
+              <PostCardContainer to={`/${post.id}`} key={post.id}>
+                <ImgContainer>
+                  {post.viewUrl !== '' ? (
+                    <img src={post.viewUrl} alt="썸네일" />
+                  ) : (
+                    <img src={blank} alt="이미지업로드" />
+                  )}
+                </ImgContainer>
+                <PostCardDesc>
+                  <h1>{post.title}</h1>
+                  <p>
+                    {post.content.length > 70
+                      ? `${post.content.slice(0, 70)}...`
+                      : post.content}
+                  </p>
+                  <PostCardDate>{post.date}</PostCardDate>
+                </PostCardDesc>
+              </PostCardContainer>
+            ))
+          ) : (
+            <CardEmptyContainer>
+              <h1>아무런 게시글을 등록하지 않았어요 🙂</h1>
+              <p>
+                사이드바에 <span>추가하기</span> 버튼을 통해 게시글을 추가할 수
+                있습니다
+              </p>
+            </CardEmptyContainer>
+          )}
+        </CardSection>
+      )}
     </>
   );
 }
