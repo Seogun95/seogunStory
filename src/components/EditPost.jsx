@@ -63,17 +63,21 @@ function EditPost({ post, setState }) {
 
   const editPostHandler = async (e) => {
     e.preventDefault();
-    await dispatch(
-      __editPostList({
-        id: post.id,
-        title: title,
-        content: content,
-        viewUrl: post.viewUrl,
-      })
-    );
-    navigate(`/${post.id}`);
-    dispatch(__getPostList());
-    setState();
+    if (title !== '' && content !== '') {
+      await dispatch(
+        __editPostList({
+          id: post.id,
+          title: title,
+          content: content,
+          date: post.date,
+          viewUrl: post.viewUrl,
+        })
+      );
+
+      navigate(`/${post.id}`);
+      dispatch(__getPostList());
+      setState();
+    }
   };
 
   return (
@@ -90,12 +94,14 @@ function EditPost({ post, setState }) {
             name={'title'}
             onChange={inputHandler}
             placeholder={'제목을 입력해주세요'}
+            required
           />
           <textarea
             value={content}
             name={'content'}
             onChange={inputHandler}
             placeholder={'포스터의 글을 입력해주세요'}
+            required
           />
           <Button custom>
             <FaPlus />

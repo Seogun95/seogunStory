@@ -12,13 +12,14 @@ const initialState = {
 // 미들웨어
 export const __addPostList = createAsyncThunk(
   'addPostList',
-  async ({ title, content, viewUrl }, thunkAPI) => {
+  async ({ title, content, date, viewUrl }, thunkAPI) => {
     try {
       const response = await axios.post(
         `${process.env.REACT_APP_BLOG_URL}/postList`,
         {
           title,
           content,
+          date,
           viewUrl,
         }
       );

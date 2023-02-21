@@ -41,7 +41,7 @@ export const CL = {
 
 export const FS = {
   xl: '1.75rem',
-  l: '1.125rem',
+  l: '1.225rem',
   m: '1rem',
   s: '.875rem',
   xs: '.625rem',

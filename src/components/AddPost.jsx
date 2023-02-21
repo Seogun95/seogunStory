@@ -55,9 +55,10 @@ const AddPostInputContainer = styled.form`
   }
 `;
 function AddPost({ setState }) {
-  const [{ title, content }, inputHandler] = useInputOnChange({
+  const [{ title, content, date }, inputHandler] = useInputOnChange({
     title: '',
     content: '',
+    date: new Intl.DateTimeFormat('kr').format(new Date()),
   });
 
   //  viewUrl: imageFile.viewUrl,
@@ -101,12 +102,12 @@ function AddPost({ setState }) {
   //   });
   // };
 
-  const img = { title, content, viewUrl: imageFile.viewUrl };
+  const posts = { title, content, date, viewUrl: imageFile.viewUrl };
   // 추가버튼 클릭시
   const createPostHandler = async (e) => {
     e.preventDefault();
     if (title !== '') {
-      await dispatch(__addPostList(img));
+      await dispatch(__addPostList(posts));
       dispatch(__getPostList());
       navigate('/');
       setState();

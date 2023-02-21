@@ -77,7 +77,7 @@ const SidebarContainer = styled.div`
 const Overlay = styled.div`
   ${(props) => props.theme.FlexRow};
   position: absolute;
-  top: -20px;
+  top: -23px;
   left: 0;
   padding: 3px 1rem;
   border-radius: 0.25rem;

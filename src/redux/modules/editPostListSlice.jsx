@@ -19,6 +19,7 @@ export const __editPostList = createAsyncThunk(
         {
           title: payload.title,
           content: payload.content,
+          date: payload.date,
           viewUrl: payload.viewUrl,
         }
       );

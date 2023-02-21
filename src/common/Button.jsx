@@ -58,6 +58,14 @@ const ButtonWrapper = styled.button`
       width: 100%;
       background-color: ${(props) => props.theme.CL.mint};
     `}
+    ${(props) =>
+    props.meta &&
+    css`
+      color: ${(props) => props.theme.CL.pastelYellow};
+      font-size: ${(props) => props.theme.FS.m};
+    `}
+
+
     & {
     cursor: pointer;
   }

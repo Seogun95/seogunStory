@@ -24,7 +24,7 @@ const PostCardDesc = styled.div`
   ${(props) => props.theme.FlexCol}
   align-items: flex-start;
   gap: 1rem;
-  width: 500px;
+  width: 700px;
   word-break: break-word;
   p {
     opacity: 0.7;
@@ -50,8 +50,12 @@ const CardSection = styled.section`
 `;
 
 const CardEmptyContainer = styled.div`
-  ${(props) => props.theme.FlexRow}
+  ${(props) => props.theme.FlexCol}
   height: calc(100vh - 260px);
+  gap: 1rem;
+  span {
+    color: tomato;
+  }
 `;
 
 function HomePage() {
@@ -88,8 +92,8 @@ function HomePage() {
               </ImgContainer>
               <PostCardDesc>
                 <h1>
-                  {post.title.length > 20
-                    ? `${post.title.slice(0, 20)}...`
+                  {post.title.length > 37
+                    ? `${post.title.slice(0, 35)}...`
                     : post.title}
                 </h1>
 
@@ -104,7 +108,11 @@ function HomePage() {
           ))
         ) : (
           <CardEmptyContainer>
-            <h1>아무런 게시글을 등록하지 않았어요!</h1>
+            <h1>아무런 게시글을 등록하지 않았어요 🙂</h1>
+            <p>
+              사이드바에 <span>추가하기</span> 버튼을 통해 게시글을 추가할 수
+              있습니다
+            </p>
           </CardEmptyContainer>
         )}
       </CardSection>

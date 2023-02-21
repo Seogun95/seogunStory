@@ -9,17 +9,61 @@ import EditPost from '../components/EditPost';
 import styled from 'styled-components';
 
 const DetailTitleWrapper = styled.div`
-  ${(props) => props.theme.FlexRow}
+  position: relative;
+  ${(props) => props.theme.FlexCol}
   min-height: 250px;
   background-color: ${(props) => props.theme.CL.dark_3};
 `;
+const DetailImg = styled.div`
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
 
+  &:before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    background: radial-gradient(
+      50% 60% at 50% 50%,
+      rgb(37 37 37 / 50%) 0,
+      #1e1e1e 100%
+    );
+    backdrop-filter: blur(3px);
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+    object-fit: cover;
+  }
+`;
 const DetailTitleContainer = styled.div`
   padding: 20px;
-  margin: 3rem 0 1rem;
+  margin: 4rem 0 1rem;
   h1 {
     max-width: 600px;
     white-space: normal;
+    text-align: center;
+  }
+`;
+const DetailTitle = styled.div`
+  position: relative;
+  z-index: 1;
+`;
+const DetailTitleMeta = styled.div`
+  ${(props) => props.theme.FlexRow}
+  z-index: 1;
+`;
+
+const DetailContentContainer = styled.div`
+  min-height: calc(100vh - 350px);
+  padding: 2rem;
+  p {
+    font-size: ${(props) => props.theme.FS.l};
   }
 `;
 
@@ -28,7 +72,6 @@ function DetailPage() {
   const { id } = useParams();
   const post = useSelector((state) => state.postList.postList);
   const postLists = post.find((item) => item.id === Number(id));
-
   const navigate = useNavigate();
 
   const deleteBtnHandler = async (id) => {
@@ -52,14 +95,27 @@ function DetailPage() {
         <div>
           <DetailTitleWrapper>
             <DetailTitleContainer>
-              <h1>{postLists.title}</h1>
+              <DetailTitle>
+                <h1>{postLists.title}</h1>
+              </DetailTitle>
             </DetailTitleContainer>
+            <DetailTitleMeta>
+              <Button meta onClick={() => deleteBtnHandler(postLists.id)}>
+                삭제
+              </Button>
+              <Button meta onClick={toggleModal}>
+                수정
+              </Button>
+            </DetailTitleMeta>
+
+            <DetailImg>
+              <img src={postLists.viewUrl} alt="" />
+            </DetailImg>
           </DetailTitleWrapper>
-          <p>{postLists.content}</p>
-          <button onClick={() => deleteBtnHandler(postLists.id)}>삭제</button>
-          <Button large onClick={toggleModal}>
-            수정
-          </Button>
+          <DetailContentContainer>
+            <p>{postLists.content}</p>
+          </DetailContentContainer>
+
           {showModal === true && (
             <Modal state={showModal} setState={setShowModal}>
               <EditPost post={postLists} setState={toggleModal} />
