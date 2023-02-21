@@ -24,6 +24,11 @@ const PostCardDesc = styled.div`
   ${(props) => props.theme.FlexCol}
   align-items: flex-start;
   gap: 1rem;
+  width: 500px;
+  word-break: break-word;
+  p {
+    opacity: 0.7;
+  }
 `;
 
 const ImgContainer = styled.div`
@@ -68,7 +73,6 @@ function HomePage() {
         {postList &&
           postList.map((post) => (
             <PostCardContainer to={`/${post.id}`} key={post.id}>
-              {/* <PostCardContainer> */}
               <ImgContainer>
                 {post.viewUrl !== '' ? (
                   <img src={post.viewUrl} alt="썸네일" />
@@ -77,10 +81,19 @@ function HomePage() {
                 )}
               </ImgContainer>
               <PostCardDesc>
-                <h1>{post.title}</h1>
-                <p>{post.content}</p>
+                <h1>
+                  {post.title.length > 20
+                    ? `${post.title.slice(0, 20)}...`
+                    : post.title}
+                </h1>
+
+                <p>
+                  {' '}
+                  {post.content.length > 70
+                    ? `${post.content.slice(0, 70)}...`
+                    : post.content}
+                </p>
               </PostCardDesc>
-              {/* </PostCardContainer> */}
             </PostCardContainer>
           ))}
       </CardSection>

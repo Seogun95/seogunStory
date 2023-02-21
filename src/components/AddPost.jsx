@@ -148,6 +148,7 @@ function AddPost({ setState }) {
             value={title}
             name="title"
             onChange={inputHandler}
+            maxLength="25"
             placeholder={'제목을 입력해주세요'}
           />
           <textarea

@@ -85,6 +85,7 @@ function EditPost({ post, setState }) {
         <AddPostInputContainer onSubmit={editPostHandler}>
           <input
             ref={inputFoucsRef}
+            maxLength="25"
             value={title}
             name={'title'}
             onChange={inputHandler}
