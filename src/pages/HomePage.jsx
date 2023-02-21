@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { __getPostList } from '../redux/modules/postListSlice';
 import { Link } from 'react-router-dom';
+import blank from '../style/img/blank.svg';
 
 const PostCardContainer = styled.div`
   ${(props) => props.theme.FlexRow}
@@ -45,7 +46,7 @@ function HomePage() {
   const { isLoading, error, postList } = useSelector((state) => {
     return state.postList;
   });
-
+  console.log(postList);
   useEffect(() => {
     dispatch(__getPostList());
   }, [dispatch]);
@@ -64,7 +65,11 @@ function HomePage() {
           <Link to={`/${post.id}`} key={post.id}>
             <PostCardContainer>
               <ImgContainer>
-                <img src="https://i.imgur.com/JPVRPFW.png" alt="썸네일" />
+                {post.viewUrl !== '' ? (
+                  <img src={post.viewUrl} alt="썸네일" />
+                ) : (
+                  <img src={blank} alt="이미지업로드" />
+                )}
               </ImgContainer>
               <PostCardDesc>
                 <h1>{post.title}</h1>

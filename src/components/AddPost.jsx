@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import imgUpload from '../style/img/upload.svg';
 import { FaPlus } from 'react-icons/fa';
@@ -21,6 +21,9 @@ const ImgUploadContainer = styled.div`
   img {
     width: 250px;
     height: 250px;
+    object-fit: cover;
+    border-radius: ${(props) => props.theme.BR.normal};
+    filter: drop-shadow(0px 0px 5px black);
   }
 `;
 
@@ -57,15 +60,53 @@ function AddPost({ setState }) {
     content: '',
   });
 
+  //  viewUrl: imageFile.viewUrl,
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const inputFoucsRef = useInputAutoFoucs();
 
+  //이미지 추가 관련 로직
+  const [imageFile, setImageFile] = useState({
+    imageFile: '',
+    viewUrl: '',
+  });
+
+  const [loaded, setLoaded] = useState(false);
+
+  let imageRef;
+
+  const onChangeUploadHandler = (e) => {
+    // console.log("사진 업로드 버튼 클릭");
+    e.preventDefault();
+
+    const fileReader = new FileReader();
+    if (e.target.files[0]) {
+      setLoaded(true);
+      fileReader.readAsDataURL(e.target.files[0]);
+    }
+    fileReader.onload = () => {
+      setImageFile({
+        viewUrl: fileReader.result,
+      });
+      // console.log(fileReader.result)
+      setLoaded(true);
+    };
+  };
+
+  // const onClickDeleteHandler = () => {
+  //   // console.log("사진 삭제 버튼 클릭");
+  //   setImageFile({
+  //     viewUrl: '',
+  //   });
+  // };
+
+  const img = { title, content, viewUrl: imageFile.viewUrl };
   // 추가버튼 클릭시
   const createPostHandler = async (e) => {
     e.preventDefault();
     if (title !== '') {
-      await dispatch(__addPostList({ title, content }));
+      await dispatch(__addPostList(img));
       dispatch(__getPostList());
       navigate('/');
       setState();
@@ -75,9 +116,32 @@ function AddPost({ setState }) {
   return (
     <>
       <ModalContainer>
-        <ImgUploadContainer>
-          <img src={imgUpload} alt="이미지업로드" />
-        </ImgUploadContainer>
+        {/* 이미지 */}
+
+        {imageFile.imageFile !== '' ? (
+          <label htmlFor="imgUpload">
+            <ImgUploadContainer>
+              <img src={imageFile.viewUrl} alt="이미지업로드" />
+            </ImgUploadContainer>
+          </label>
+        ) : (
+          <label htmlFor="imgUpload">
+            <ImgUploadContainer>
+              <img src={imgUpload} alt="이미지업로드" />
+            </ImgUploadContainer>
+          </label>
+        )}
+
+        <input
+          type="file"
+          accept="image/*"
+          style={{ display: 'none' }}
+          onChange={onChangeUploadHandler}
+          ref={(refer) => (imageRef = refer)}
+          id="imgUpload"
+        />
+
+        {/* 추가 */}
         <AddPostInputContainer onSubmit={createPostHandler}>
           <input
             ref={inputFoucsRef}
