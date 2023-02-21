@@ -11,7 +11,7 @@ import styled from 'styled-components';
 const DetailTitleWrapper = styled.div`
   position: relative;
   ${(props) => props.theme.FlexCol}
-  min-height: 250px;
+  min-height: 350px;
   background-color: ${(props) => props.theme.CL.dark_3};
 `;
 const DetailImg = styled.div`
@@ -48,6 +48,8 @@ const DetailTitleContainer = styled.div`
     max-width: 600px;
     white-space: normal;
     text-align: center;
+    text-shadow: -1px -1px 10px #000, 1px -1px 5px #000, -1px 1px 5px #000,
+      1px 1px 5px #000;
   }
 `;
 const DetailTitle = styled.div`
@@ -57,6 +59,9 @@ const DetailTitle = styled.div`
 const DetailTitleMeta = styled.div`
   ${(props) => props.theme.FlexRow}
   z-index: 1;
+  > span {
+    margin-right: 1rem;
+  }
 `;
 
 const DetailContentContainer = styled.div`
@@ -75,8 +80,11 @@ function DetailPage() {
   const navigate = useNavigate();
 
   const deleteBtnHandler = async (id) => {
-    await dispatch(__deletePostList(id));
-    navigate('/');
+    const confirmResult = window.confirm('정말로 삭제하시겠습니까?');
+    if (confirmResult) {
+      await dispatch(__deletePostList(id));
+      navigate('/');
+    }
   };
 
   useEffect(() => {
@@ -100,6 +108,8 @@ function DetailPage() {
               </DetailTitle>
             </DetailTitleContainer>
             <DetailTitleMeta>
+              <span>by. 서근</span>
+              <span>{postLists.date}</span>
               <Button meta onClick={() => deleteBtnHandler(postLists.id)}>
                 삭제
               </Button>
