@@ -61,7 +61,7 @@ const ButtonWrapper = styled.button`
     ${(props) =>
     props.meta &&
     css`
-      color: ${(props) => props.theme.CL.pastelYellow};
+      color: #ffd12c;
       font-size: ${(props) => props.theme.FS.m};
     `}
 

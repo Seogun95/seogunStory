@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import blank from '../style/img/blank.svg';
 
 const PostCardContainer = styled(Link)`
+  position: relative;
   ${(props) => props.theme.FlexRow}
   justify-content: flex-start;
   padding: 1rem;
@@ -17,6 +18,7 @@ const PostCardContainer = styled(Link)`
   transition: 0.2s linear;
   &:hover {
     transform: translateX(5px);
+    background-color: #1c1c1c;
   }
 `;
 
@@ -56,6 +58,13 @@ const CardEmptyContainer = styled.div`
   span {
     color: tomato;
   }
+`;
+
+const PostCardDate = styled.div`
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
+  opacity: 0.5; ;
 `;
 
 function HomePage() {
@@ -103,6 +112,7 @@ function HomePage() {
                     ? `${post.content.slice(0, 70)}...`
                     : post.content}
                 </p>
+                <PostCardDate>{post.date}</PostCardDate>
               </PostCardDesc>
             </PostCardContainer>
           ))
