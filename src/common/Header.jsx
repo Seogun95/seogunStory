@@ -1,9 +1,8 @@
 import styled from 'styled-components';
 import { useState, useEffect } from 'react';
-
 const HeaderStyles = styled.header`
   width: 100%;
-  background-color: ${(props) => props.theme.CL.dark_1};
+  ${(props) => props.theme.DarkBlur};
   height: 3.125rem;
   display: flex;
   align-items: center;
@@ -43,7 +42,7 @@ export default function Header() {
   }, []);
 
   return (
-    <HeaderStyles className={isHide ? 'hide' : ''}>
+    <HeaderStyles className={isHide ? 'hide' : !isHide ? '' : 'hide'}>
       <Logo>서근 스토리</Logo>
     </HeaderStyles>
   );

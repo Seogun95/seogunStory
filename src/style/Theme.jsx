@@ -13,6 +13,11 @@ export const FlexCol = css`
   align-items: center;
 `;
 
+export const DarkBlur = css`
+  background: #161616aa;
+  backdrop-filter: blur(3px);
+`;
+
 export const CL = {
   white: 'white',
   black: 'black',
@@ -29,7 +34,6 @@ export const CL = {
   pastelBlue: '#b9e7dd',
   pastelYellow: '#f6e1b1',
   pastelGreen: '#bfdaa9',
-
   dark_1: '#161616',
   dark_2: '#303030',
   dark_3: '#4f4f4f',
