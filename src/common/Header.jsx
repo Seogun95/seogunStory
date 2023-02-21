@@ -34,7 +34,7 @@ export default function Header() {
 
     const handleScroll = () => {
       const currentScrollPos = window.pageYOffset;
-      setIsHide(prevScrollPos > currentScrollPos && currentScrollPos > 0);
+      setIsHide(currentScrollPos > prevScrollPos && currentScrollPos > 0);
       prevScrollPos = currentScrollPos;
     };
 
