@@ -17,6 +17,10 @@ export const DarkBlur = css`
   background: #161616aa;
   backdrop-filter: blur(3px);
 `;
+export const AbsoluteCenter = css`
+  position: absolute;
+  inset: 0;
+`;
 
 export const CL = {
   white: 'white',

@@ -28,6 +28,7 @@ const ButtonWrapper = styled.button`
   border: ${(props) => props.border};
   background-color: ${(props) => props.bg};
   transition: ${(props) => props.ts};
+  color: ${(props) => props.color};
 
   ${(props) =>
     props.small &&
