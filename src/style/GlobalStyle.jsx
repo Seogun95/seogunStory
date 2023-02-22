@@ -60,21 +60,24 @@ export const GlobalStyle = createGlobalStyle`
     }
       font-family: 'IBMPlexSansKR-Regular';
     }
+
+    //반드시 overflow: overlay해야 -webkit-scrollbar-track 투명도를 설정할 수 있다.
+    body {
+      overflow: overlay;
+    }
     ::-webkit-scrollbar {
     width: 10px;
-    height: 10px
-  }
-
-  ::-webkit-scrollbar-thumb {
-      background-clip: padding-box;
-      border: 0 solid transparent;
-      border-radius: 10px;
-      background-color: #54efc3;
-  }
-
-  ::-webkit-scrollbar-track {
-    background: transparent;
-  }
+    height: 10px;
+    }
+    ::-webkit-scrollbar-thumb {
+        background-clip: padding-box;
+        border: 0 solid transparent;
+        border-radius: 10px;
+        background-color: #0000008e;
+    }
+    ::-webkit-scrollbar-track {
+      background-color: transparent;
+    }
 
 
 `;
