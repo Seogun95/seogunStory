@@ -1,11 +1,15 @@
 import { useEffect, useRef } from 'react';
 
-export default function useScrollToTop() {
+function useScrollToTop() {
   const topRef = useRef(null);
 
   useEffect(() => {
-    topRef.current.scrollIntoView({ behavior: 'smooth' });
+    if (topRef.current !== null) {
+      topRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
   }, []);
 
   return topRef;
 }
+
+export default useScrollToTop;
