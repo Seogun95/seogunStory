@@ -7,6 +7,7 @@ import Button from '../common/Button';
 import Modal from '../components/Modal';
 import EditPost from '../components/EditPost';
 import styled from 'styled-components';
+import useScrollToTop from '../hooks/useScrollToTop';
 
 const DetailTitleWrapper = styled.div`
   position: relative;
@@ -89,6 +90,9 @@ function DetailPage() {
     dispatch(__getPostList());
   }, [dispatch]);
 
+  // scroll to top 훅
+  const topRef = useScrollToTop();
+
   const [showModal, setShowModal] = useState(false);
   const toggleModal = () => {
     setShowModal((prevShowModal) => !prevShowModal);
@@ -98,7 +102,7 @@ function DetailPage() {
     <>
       {/*조건부 렌더링 구문*/}
       {post.length !== 0 && (
-        <div>
+        <div ref={topRef}>
           <DetailTitleWrapper>
             <DetailTitleContainer>
               <DetailTitle>

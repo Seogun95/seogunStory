@@ -9,6 +9,7 @@ import { __addPostList } from '../redux/modules/addPostListSlice';
 import { __getPostList } from '../redux/modules/postListSlice';
 import { useNavigate } from 'react-router-dom';
 import Button from '../common/Button';
+import imageCompression from 'browser-image-compression';
 
 const ModalContainer = styled.div`
   position: relative;
@@ -73,34 +74,33 @@ function AddPost({ setState }) {
     viewUrl: '',
   });
 
-  const [loaded, setLoaded] = useState(false);
-
-  let imageRef;
-
-  const onChangeUploadHandler = (e) => {
-    // console.log("사진 업로드 버튼 클릭");
+  const onChangeUploadHandler = async (e) => {
     e.preventDefault();
 
-    const fileReader = new FileReader();
-    if (e.target.files[0]) {
-      setLoaded(true);
-      fileReader.readAsDataURL(e.target.files[0]);
-    }
-    fileReader.onload = () => {
-      setImageFile({
-        viewUrl: fileReader.result,
-      });
-      // console.log(fileReader.result)
-      setLoaded(true);
+    const imageFile = e.target.files?.[0];
+    console.log('Before Compression: ', imageFile.size);
+    const options = {
+      maxSizeMB: 1,
+      maxWidthOrHeight: 1920,
+      useWebWorker: true,
     };
-  };
 
-  // const onClickDeleteHandler = () => {
-  //   // console.log("사진 삭제 버튼 클릭");
-  //   setImageFile({
-  //     viewUrl: '',
-  //   });
-  // };
+    try {
+      const compressedFile = await imageCompression(imageFile, options);
+      console.log('After Compression: ', compressedFile.size);
+      const fileReader = new FileReader();
+      console.log(compressedFile);
+      fileReader.readAsDataURL(compressedFile);
+
+      fileReader.onload = () => {
+        setImageFile({
+          viewUrl: String(fileReader.result),
+        });
+      };
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const posts = { title, content, date, viewUrl: imageFile.viewUrl };
   // 추가버튼 클릭시
@@ -138,7 +138,6 @@ function AddPost({ setState }) {
           accept="image/*"
           style={{ display: 'none' }}
           onChange={onChangeUploadHandler}
-          ref={(refer) => (imageRef = refer)}
           id="imgUpload"
         />
 
