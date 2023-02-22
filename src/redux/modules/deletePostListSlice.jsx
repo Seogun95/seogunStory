@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
+import instance from '../../util/api';
 
 // 초기값
 const initialState = {
@@ -14,9 +14,7 @@ export const __deletePostList = createAsyncThunk(
   'deletePostList',
   async (id, thunkAPI) => {
     try {
-      const response = await axios.delete(
-        `${process.env.REACT_APP_BLOG_URL}/postList/${id}`
-      );
+      const response = await instance.delete(`/postList/${id}`);
 
       return thunkAPI.fulfillWithValue(response.data);
     } catch (error) {

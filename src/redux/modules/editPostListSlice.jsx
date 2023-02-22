@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
+import instance from '../../util/api';
 
 // 초기값
 const initialState = {
@@ -14,15 +14,12 @@ export const __editPostList = createAsyncThunk(
   'eidtPostList',
   async (payload, thunkAPI) => {
     try {
-      const response = await axios.put(
-        `${process.env.REACT_APP_BLOG_URL}/postList/${payload.id}`,
-        {
-          title: payload.title,
-          content: payload.content,
-          date: payload.date,
-          viewUrl: payload.viewUrl,
-        }
-      );
+      const response = await instance.put(`/postList/${payload.id}`, {
+        title: payload.title,
+        content: payload.content,
+        date: payload.date,
+        viewUrl: payload.viewUrl,
+      });
 
       return thunkAPI.fulfillWithValue(response.data);
     } catch (error) {
