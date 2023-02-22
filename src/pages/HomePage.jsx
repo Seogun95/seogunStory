@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { __getPostList } from '../redux/modules/postListSlice';
 import { Link } from 'react-router-dom';
 import blank from '../style/img/blank.svg';
+import useScrollToTop from '../hooks/useScrollToTop';
 
 const PostCardContainer = styled(Link)`
   position: relative;
@@ -70,6 +71,9 @@ const PostCardDate = styled.div`
 function HomePage() {
   const dispatch = useDispatch();
 
+  // scroll to top 훅
+  const topRef = useScrollToTop();
+
   // 첫 로딩될 때 리스트 가져옴
   const { isLoading, error, postList } = useSelector((state) => {
     return state.postList;
@@ -88,7 +92,7 @@ function HomePage() {
       {isLoading ? (
         <CardEmptyContainer>로딩중...</CardEmptyContainer>
       ) : (
-        <CardSection>
+        <CardSection ref={topRef}>
           {postList.length !== 0 ? (
             postList.map((post) => (
               <PostCardContainer to={`/${post.id}`} key={post.id}>
