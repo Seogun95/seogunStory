@@ -29,11 +29,11 @@ export const LoginModal = styled.div`
   border-radius: 1rem;
   width: 500px;
   height: 600px;
-  gap: 1rem;
 `;
 
-export const LoginInputContainer = styled.div`
+export const LoginInputContainer = styled.form`
   ${(props) => props.theme.FlexCol}
+  align-items: flex-start;
   margin: 1rem 0;
 `;
 
@@ -48,7 +48,7 @@ export const LoginInput = styled.input`
   border-radius: 0.5rem;
   height: 3.125rem;
   line-height: 4.375rem;
-  padding: 16px 20px 0;
+  padding: 16px 35px 0;
 `;
 
 export const LoginInsideLabel = styled.label`
@@ -59,11 +59,24 @@ export const LoginInsideLabel = styled.label`
   transform: translateY(0);
   color: black;
 `;
-
+export const LoginInputIcon = styled.span`
+  position: absolute;
+  top: 70%;
+  left: 10px;
+  transform: translateY(-50%);
+  color: #aeaeae;
+`;
 export const LoginGoToSignup = styled.div`
   ${(props) => props.theme.FlexRow}
   justify-content: flex-end;
   span {
     opacity: 0.6;
   }
+`;
+
+export const LoginAlertSpan = styled.div`
+  font-size: 0.8rem;
+  padding: 0.2rem 0.5rem 0.5rem;
+  height: ${(props) => props.height};
+  color: ${(props) => (props.isIdOrPw ? 'springgreen' : 'tomato')};
 `;
