@@ -1,7 +1,9 @@
 import axios from 'axios';
 
-const instance = axios.create({
+export const instance = axios.create({
   baseURL: process.env.REACT_APP_BLOG_URL,
 });
 
-export default instance;
+export const jwtserver = axios.create({
+  baseURL: process.env.REACT_APP_URL,
+});
