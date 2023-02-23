@@ -35,7 +35,9 @@ export default function SignupPage() {
 
   const loginBtnHandler = async (e) => {
     e.preventDefault();
-    const expiryDate = new Date(Date.now() + 10 * 60 * 1000);
+    let now = new Date();
+    const expiryDate = new Date(now.setMinutes(now.getMinutes() + 10));
+    // const expiryDate = new Date(Date.now() + 10 * 60 * 1000);
     if (inputId !== '' && inputPw !== '') {
       try {
         const response = await jwtserver.post('/login', {
