@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
+import Button from './Button';
 
 const HeaderStyles = styled.header`
   width: 100%;
@@ -43,11 +45,25 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const LogoutBtn = () => {
+    const navigate = useNavigate();
+    return (
+      <Button
+        onClick={() => {
+          Cookies.remove('token');
+          navigate('/login');
+        }}
+      >
+        로그 아웃
+      </Button>
+    );
+  };
   return (
     <HeaderStyles className={isHide ? 'hide' : !isHide ? '' : 'hide'}>
       <Link to="/">
         <Logo>서근 스토리</Logo>
       </Link>
+      <LogoutBtn />
     </HeaderStyles>
   );
 }
