@@ -17,14 +17,13 @@ import { jwtserver } from '../util/api';
 export default function SignupPage() {
   const [inputId, setinputId] = useState('');
   const [inputPw, setinputPw] = useState('');
-  // const [inputPwCheck, setinputPwCheck] = useState('');
-  // 오류 메세지
+
   const [idMessage, setIdMessage] = useState('이메일을 입력해주세요');
   const [pwMessage, setPwMessage] = useState('비밀번호를 입력해주세요');
 
-  // 유효성 검사 둘다 true 일시 버튼 클릭 가넝
   const [isId, setIsId] = useState(false);
   const [isPw, setIsPw] = useState(false);
+  const navigate = useNavigate();
 
   // id input change
   const idChangeHanlder = (e) => {
@@ -55,15 +54,16 @@ export default function SignupPage() {
   };
 
   // 회원가입
-  const joinHandler = async () => {
+  const joinHandler = async (e) => {
+    e.preventDefault();
     if (isId === true && isPw === true) {
       try {
         await jwtserver.post('/register', {
           id: inputId,
           password: inputPw,
         });
-        alert('회원가입 성공 !!');
-        moveRegistrationPg();
+        alert('회원가입이 완료 되었습니다.');
+        moveSignupPg();
       } catch (error) {
         alert(error.response.data.message);
       }
@@ -79,9 +79,7 @@ export default function SignupPage() {
     };
   }, []);
 
-  const navigate = useNavigate();
-
-  const moveRegistrationPg = () => {
+  const moveSignupPg = () => {
     navigate(-1);
   };
 
@@ -91,7 +89,7 @@ export default function SignupPage() {
       <LoginModalWrapper>
         <LoginModal>
           <h1>회원가입</h1>
-          <LoginInputContainer>
+          <LoginInputContainer onSubmit={joinHandler}>
             <Input
               text={'이메일'}
               value={inputId}
@@ -116,17 +114,14 @@ export default function SignupPage() {
               <LoginInsideLabel>비밀번호 확인</LoginInsideLabel>
               <LoginInput value="inputPwCheck" onChange={() => {}}></LoginInput>
             </LoginLabel> */}
+            <Button large w={'100% !important'}>
+              회원가입
+            </Button>
           </LoginInputContainer>
-          <Button onClick={joinHandler} large w={'100% !important'}>
-            회원가입
-          </Button>
+
           <LoginGoToSignup>
             <span>로그인 페이지로 돌아갈까요? </span>
-            <Button
-              onClick={moveRegistrationPg}
-              color={'white'}
-              size={'1.2rem'}
-            >
+            <Button onClick={moveSignupPg} color={'white'} size={'1.2rem'}>
               돌아가기
             </Button>
           </LoginGoToSignup>
