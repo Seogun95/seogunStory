@@ -55,6 +55,7 @@
 
 ### 2) 홈 화면
 
+![CleanShot 2023-02-23 at 11 34 34](https://user-images.githubusercontent.com/76584961/220809308-eac317fe-de2f-4343-8dda-fb8441775fe2.png)
 ![CleanShot 2023-02-23 at 11 10 29](https://user-images.githubusercontent.com/76584961/220807578-285aa033-7c96-4a77-aff6-b7132e0afb53.png)
 
 ### 3) 게시글 추가 모달창
