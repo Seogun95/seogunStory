@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 // import axios from 'axios';
-import instance from '../../util/api';
+import { instance } from '../../util/api';
+
 // 초기값
 const initialState = {
   postList: [],
