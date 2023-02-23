@@ -8,6 +8,7 @@ import Modal from '../components/Modal';
 import EditPost from '../components/EditPost';
 import styled from 'styled-components';
 import useScrollToTop from '../hooks/useScrollToTop';
+import useAuthorization from '../hooks/useAuthorization';
 
 const DetailTitleWrapper = styled.div`
   position: relative;
@@ -77,6 +78,7 @@ function DetailPage() {
   const post = useSelector((state) => state.postList.postList);
   const postLists = post.find((item) => item.id === Number(id));
   const navigate = useNavigate();
+  useAuthorization();
 
   const deleteBtnHandler = async (id) => {
     const confirmResult = window.confirm('정말로 삭제하시겠습니까?');

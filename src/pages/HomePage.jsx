@@ -5,6 +5,7 @@ import { __getPostList } from '../redux/modules/postListSlice';
 import { Link } from 'react-router-dom';
 import blank from '../style/img/blank.svg';
 import useScrollToTop from '../hooks/useScrollToTop';
+import useAuthorization from '../hooks/useAuthorization';
 
 const PostCardContainer = styled(Link)`
   position: relative;
@@ -70,7 +71,6 @@ const PostCardDate = styled.div`
 
 function HomePage() {
   const dispatch = useDispatch();
-
   // scroll to top 훅
   const topRef = useScrollToTop();
 
@@ -78,7 +78,8 @@ function HomePage() {
   const { isLoading, error, postList } = useSelector((state) => {
     return state.postList;
   });
-  console.log(postList);
+
+  useAuthorization();
   useEffect(() => {
     dispatch(__getPostList());
   }, [dispatch]);
